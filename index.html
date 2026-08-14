@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ReflexLab — Reaction &amp; Eye Training</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="menu" class="screen">
+    <h1>Reflex<span>Lab</span></h1>
+    <p class="tagline">Five quick drills to sharpen your reaction time and eye movement.</p>
+    <div id="mode-cards"></div>
+    <p class="footnote">Best scores are saved in this browser &middot; Press Esc during a drill to quit</p>
+  </main>
+
+  <main id="game" class="screen hidden">
+    <header id="hud">
+      <button id="quit">&larr; Menu</button>
+      <div id="hud-title"></div>
+      <div id="hud-info"></div>
+    </header>
+    <div id="arena" class="arena"></div>
+    <div id="results" class="hidden">
+      <div class="panel">
+        <div id="results-badge" class="badge hidden">New best!</div>
+        <h2 id="results-title"></h2>
+        <div id="results-primary"></div>
+        <div id="results-primary-label"></div>
+        <ul id="results-lines"></ul>
+        <div class="row">
+          <button id="replay" class="primary">Play again</button>
+          <button id="to-menu">Menu</button>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
