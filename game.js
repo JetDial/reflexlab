@@ -38,6 +38,7 @@ function el(tag, cls, text) {
 }
 
 const mean = (xs) => xs.reduce((a, b) => a + b, 0) / xs.length;
+const plural = (n, word) => `${n} ${word}${n === 1 ? '' : 's'}`;
 
 // Everything a drill starts (timers, rAF loops, listeners) is registered here
 // so switching drills or quitting can tear it all down in one call.
@@ -166,7 +167,7 @@ const MODES = [
     name: 'Target Hunt',
     desc: 'Targets jump across the arena — snap your eyes to each one and hit as many as you can in 30 seconds.',
     betterIs: 'higher',
-    format: (v) => `${v} hits`,
+    format: (v) => plural(v, 'hit'),
     start() {
       const DURATION = 30000;
       const SIZE = 52;
@@ -226,7 +227,7 @@ const MODES = [
         spawn();
         session.after(end, DURATION);
         session.every(() => {
-          hudInfo.textContent = `${Math.max(0, (endAt - performance.now()) / 1000).toFixed(1)} s · ${hits} hits`;
+          hudInfo.textContent = `${Math.max(0, (endAt - performance.now()) / 1000).toFixed(1)} s · ${plural(hits, 'hit')}`;
         }, 100);
       });
 
