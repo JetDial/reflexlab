@@ -1,0 +1,46 @@
+# Publish the game to GitHub Pages. index.html, game.js and style.css are the
+# whole thing -- no build step, no dependencies -- so the root is served as-is.
+name: Publish the game
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time; never cancel a running one half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pages runs Jekyll unless told otherwise, and Jekyll drops anything
+      # whose name begins with an underscore.
+      - name: Stop Pages from running Jekyll over the site
+        run: touch .nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
