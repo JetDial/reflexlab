@@ -2,9 +2,12 @@
 
 A browser game with five quick drills for improving reaction time and eye movement. No frameworks, no build step — plain HTML, CSS, and JavaScript.
 
+**Play it here: https://jetdial.github.io/reflexlab/**
+
 ## Run it
 
-Open `index.html` in any modern browser. That's it.
+Open `index.html` in any modern browser. That's it — no server, no install.
+The published site above is these same three files.
 
 ## The drills
 
